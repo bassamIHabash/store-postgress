@@ -71,21 +71,19 @@ npm install
 docker compose up -d
 ```
 
-### 3. Create migration files & run migrations
-```bash
-bash setup-migrations.sh
-```
-> This creates all migration files under `migrations/` and runs them against the database.
+### 3. Database Migrations
+- **Setup & Run All Migrations**: `bash setup-migrations.sh` (Scaffolds and runs everything).
+- **Run Migrations**: `npm run db:migrate` (Runs pending migrations).
+- **Rollback Migrations**: `npm run db:rollback` (Rolls back the last 4 migrations).
 
-### 4. Run migrations only (after files already exist)
-```bash
-npm run db:migrate
-```
+### 4. Running the Application
+- **Development Mode**: `npm run start:dev` (Compiles and starts the server).
+- **Watch Mode**: `npm run watch` (Automatically recompiles and restarts on changes).
+- **Build**: `npm run build` (Compiles TypeScript to JavaScript in `dist/`).
+- **Start Production**: `npm start` (Runs the compiled code from `dist/`).
 
-### 5. Rollback migrations
-```bash
-npm run db:rollback
-```
+### 5. Testing
+- **Run Tests**: `npm test` (Runs jasmine-ts tests).
 
 ---
 
