@@ -48,5 +48,21 @@ class ProductStore {
         conn.release();
         return result.rows;
     }
+    /** DELETE /products/:id — delete a product */
+    async delete(id) {
+        const conn = await database_1.default.connect();
+        const result = await conn.query('DELETE FROM products WHERE id = $1 RETURNING *', [id]);
+        conn.release();
+        return result.rows[0];
+    }
+    /** PUT /products/:id — update a product */
+    async update(id, p) {
+        const conn = await database_1.default.connect();
+        const result = await conn.query(`UPDATE products SET name = $1, price = $2, category = $3
+       WHERE id = $4
+       RETURNING *`, [p.name, p.price, p.category, id]);
+        conn.release();
+        return result.rows[0];
+    }
 }
 exports.ProductStore = ProductStore;

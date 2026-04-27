@@ -19,7 +19,4 @@ app.use('/orders', orders_1.default);
 app.get('/', (_req, res) => {
     res.json({ message: 'Storefront API is running 🚀' });
 });
-app.listen(3000, () => {
-    console.log(`Server started on: ${address}`);
-});
 exports.default = app;

@@ -20,8 +20,4 @@ app.get('/', (_req: Request, res: Response) => {
   res.json({ message: 'Storefront API is running 🚀' })
 })
 
-app.listen(3000, () => {
-  console.log(`Server started on: ${address}`)
-})
-
 export default app
