@@ -52,3 +52,80 @@ Add JWT functionality as shown in the course. Make sure that JWTs are required f
 Before submitting, make sure that your project is complete with a `README.md`. Your `README.md` must include instructions for setting up and running your project including how you setup, run, and connect to your database. 
 
 Before submitting your project, spin it up and test each endpoint. If each one responds with data that matches the data shapes from the `REQUIREMENTS.md`, it is ready for submission!
+
+---
+
+## Setup & Commands
+
+### Prerequisites
+- [Docker Desktop](https://www.docker.com/products/docker-desktop/) must be running.
+- Node.js & npm installed.
+
+### 1. Install dependencies
+```bash
+npm install
+```
+
+### 2. Start the database
+```bash
+docker compose up -d
+```
+
+### 3. Create migration files & run migrations
+```bash
+bash setup-migrations.sh
+```
+> This creates all migration files under `migrations/` and runs them against the database.
+
+### 4. Run migrations only (after files already exist)
+```bash
+npm run db:migrate
+```
+
+### 5. Rollback migrations
+```bash
+npm run db:rollback
+```
+
+---
+
+## Docker Commands
+
+| Command | Description |
+|---|---|
+| `docker compose up -d` | Start Postgres in the background |
+| `docker compose down` | Stop containers |
+| `docker compose down -v` | Stop containers **and** delete volumes (full reset) |
+| `docker ps` | List running containers |
+
+---
+
+## Connecting to the Database
+
+**Open a shell inside the container:**
+```bash
+docker exec -it store-postgress-postgres-1 bash
+```
+
+**Connect to psql directly:**
+```bash
+docker exec -it store-postgress-postgres-1 psql -U postgres -d storefront
+```
+
+**Useful psql commands:**
+```
+\dt          -- list all tables
+\d <table>   -- describe a table
+\q           -- quit psql
+```
+
+**Database connection details** (defined in `.env`):
+
+| Key | Value |
+|---|---|
+| Host | `127.0.0.1` |
+| Port | `5432` |
+| Database | `storefront` |
+| User | `postgres` |
+| Password | `password` |
+
